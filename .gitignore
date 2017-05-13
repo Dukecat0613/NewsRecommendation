@@ -87,4 +87,9 @@ ENV/
 
 # Rope project settings
 .ropeproject
->>>>>>> 8af75b6288e6680fb9bcd078ce3803397de73408
+
+# DS_Store
+.DS_Store
+
+# Pyc files
+*.pyc
