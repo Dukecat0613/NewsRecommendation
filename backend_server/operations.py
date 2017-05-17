@@ -16,7 +16,6 @@ import mongodb_client
 import news_recommendation_service_client
 import parameters
 
-REDIS_HOST = "localhost"
 REDIS_PORT = parameters.redisPort
 
 NEWS_TABLE_NAME = parameters.NEWS_TABLE_NAME
@@ -27,7 +26,7 @@ NEWS_LIST_BATCH_SIZE = parameters.NEWS_LIST_BATCH_SIZE
 USER_NEWS_TIME_OUT_IN_SECONDS = parameters.USER_NEWS_TIME_OUT_IN_SECONDS
 
 
-redis_client = redis.StrictRedis(REDIS_HOST, REDIS_PORT, db=0)
+redis_client = redis.StrictRedis('localhost', REDIS_PORT, db=0)
 Log_kafka_producer = KafkaProducer(bootstrap_servers = parameters.KAFKA_SERVER)
 # cloudAMQP_client = CloudAMQPClient(LOG_CLICKS_TASK_QUEUE_URL, LOG_CLICKS_TASK_QUEUE_NAME)
 
