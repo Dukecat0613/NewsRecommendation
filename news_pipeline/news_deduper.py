@@ -1,16 +1,3 @@
-# -*- coding: utf-8 -*-
-# @Author: Dukecat
-# @Date:   2017-05-02T23:27:09-04:00
-# @Last modified by:   Dukecat
-# @Last modified time: 2017-05-11T21:00:31-04:00
-
-
-
-
-
-
-
-
 import datetime
 import os
 import sys

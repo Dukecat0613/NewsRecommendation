@@ -1,12 +1,3 @@
-# @Author: Dukecat
-# @Date:   2017-05-02T23:27:09-04:00
-# @Last modified by:   Dukecat
-# @Last modified time: 2017-05-11T19:42:34-04:00
-
-
-
-
-
 import cnn_news_scraper as scraper
 
 EXPECTED_STRING = "the man charged with killing five people at the Fort Lauderdale airport"
