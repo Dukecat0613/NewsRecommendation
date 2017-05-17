@@ -55,7 +55,7 @@ for msg in Scrape_kafka_consumer:
     if msg is not None:
         # Handle message
         try:
-            handle_message(msg)
+            handle_message(json.loads(msg.value))
         except Exception as e:
             print e
             pass

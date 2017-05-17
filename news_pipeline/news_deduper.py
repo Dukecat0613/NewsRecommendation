@@ -2,6 +2,7 @@ import datetime
 import os
 import sys
 import time
+import json
 
 from dateutil import parser
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -72,7 +73,7 @@ for msg in Deque_kafka_consumer:
     if msg is not None:
         # Parse and process the task
         try:
-            handle_message(msg)
+            handle_message(json.loads(sg.value))
         except Exception as e:
             print e
             pass

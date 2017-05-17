@@ -32,7 +32,7 @@ NEWS_SOURCES = [
 ]
 
 redis_client = redis.StrictRedis(parameters.redisHost, parameters.redisPort)
-Monitor_kafka_producer = KafkaProducer(bootstrap_servers = parameters.KAFKA_SERVER)
+Scrape_kafka_producer = KafkaProducer(bootstrap_servers = parameters.KAFKA_SERVER)
 
 while True:
     news_list = news_api_client.getNewsFromSource(NEWS_SOURCES)
@@ -54,7 +54,7 @@ while True:
         redis_client.set(news_digest, news)
         redis_client.expire(news_digest, parameters.NEWS_TIME_OUT_IN_SECONDS)
 
-        Monitor_kafka_producer.send(topic=parameters.SCRAPE_NEWS_TASK_QUEUE, value=json.dumps(news), timestamp_ms=time.time())
+        Scrape_kafka_producer.send(topic=parameters.SCRAPE_NEWS_TASK_QUEUE, value=json.dumps(news), timestamp_ms=time.time())
 
     print "Fetched %d new news." % num_of_new_news
 
