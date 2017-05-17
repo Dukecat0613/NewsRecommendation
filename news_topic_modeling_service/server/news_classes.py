@@ -1,12 +1,3 @@
-# @Author: Hang Wu <Dukecat>
-# @Date:   2017-05-16T14:46:18-04:00
-# @Email:  wuhang0613@gmail.com
-# @Filename: news_classes.py
-# @Last modified by:   Dukecat
-# @Last modified time: 2017-05-16T16:12:12-04:00
-
-
-
 class_map = {
   '1' : 'Colleges & Schools',
   '2' : 'Environmental',

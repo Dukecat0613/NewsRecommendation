@@ -1,15 +1,3 @@
-# -*- coding: utf-8 -*-
-# @Author: Dukecat
-# @Date:   2017-05-02T23:27:09-04:00
-# @Last modified by:   Dukecat
-# @Last modified time: 2017-05-11T20:25:02-04:00
-
-
-
-
-
-
-
 '''
 Time decay model:
 If selected:
