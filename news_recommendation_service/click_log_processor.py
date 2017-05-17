@@ -17,6 +17,7 @@ import os
 import sys
 from kafka import KafkaConsumer
 import time
+import json
 
 # import common package in parent directory
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'common'))
@@ -92,7 +93,7 @@ def run():
     for msg in Log_kafka_consumer:
         if msg is not None:
             try:
-                handle_message(msg)
+                handle_message(json.loads(msg.value))
             except Exception as e:
                 print e
                 pass
