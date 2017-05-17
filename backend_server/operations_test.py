@@ -1,23 +1,19 @@
 import operations
 import os
 import sys
+import json
 
 from sets import Set
+from kafka import KafkaConsumer
 
 # import common package in parent directory
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'common'))
-
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 import mongodb_client
-from cloudAMQP_client import CloudAMQPClient
+import parameters
 
-# TODO: use your own queue.
-LOG_CLICKS_TASK_QUEUE_URL = "amqp://cvfaicnw:el5qscg30jx-T3Zs1Hp7xFpHaqEVnnuw@clam.rmq.cloudamqp.com/cvfaicnw"
-LOG_CLICKS_TASK_QUEUE_NAME = "LOG_CLICKS_TASK_QUEUE"
-
-CLICK_LOGS_TABLE_NAME = 'click_logs'
-
-cloudAMQP_client = CloudAMQPClient(LOG_CLICKS_TASK_QUEUE_URL, LOG_CLICKS_TASK_QUEUE_NAME)
-
+Log_kafka_consumer = KafkaConsumer(parameters.LOG_CLICKS_TASK_QUEUE, bootstrap_servers = parameters.KAFKA_SERVER,
+                        auto_offset_reset='smallest')
 # Start Redis and MongoDB before running following tests.
 
 def test_getNewsSummariesForUser_basic():
@@ -57,12 +53,11 @@ def test_logNewsClickForUser_basic():
 
     db[CLICK_LOGS_TABLE_NAME].delete_many({"userId": "test"})
 
-    # Verify the message has been sent to queue.
-    msg = cloudAMQP_client.getMessage()
-    assert msg is not None
-    assert msg['userId'] == 'test'
-    assert msg['newsId'] == 'test_news'
-    assert msg['timestamp'] is not None
+    # Verify the message can be received by kafkaconsumer.
+    for msg in Log_kafka_consumer:
+        dumpmsg = json.loads(msg)
+        assert dumpmsg['userId'] == 'test'
+        assert dumpmsg['newsId'] == 'test_news'
 
     print 'test_logNewsClicksForUser_basic passed!'
 
@@ -71,3 +66,4 @@ if __name__ == "__main__":
     test_getNewsSummariesForUser_basic()
     test_getNewsSummariesForUser_pagination()
     test_logNewsClickForUser_basic()
+    Log_kafka_consumer.close()
