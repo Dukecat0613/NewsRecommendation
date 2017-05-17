@@ -7,30 +7,29 @@ import sys
 
 from bson.json_util import dumps
 from datetime import datetime
+from kafka import KafkaProducer
 
 # import common package in parent directory
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'common'))
-
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 import mongodb_client
 import news_recommendation_service_client
-
-from cloudAMQP_client import CloudAMQPClient
+import parameters
 
 REDIS_HOST = "localhost"
-REDIS_PORT = 6379
+REDIS_PORT = parameters.redisPort
 
-NEWS_TABLE_NAME = "newCollection"
-CLICK_LOGS_TABLE_NAME = 'click_logs'
+NEWS_TABLE_NAME = parameters.NEWS_TABLE_NAME
+CLICK_LOGS_TABLE_NAME = parameters.CLICK_LOGS_TABLE_NAME
 
-NEWS_LIMIT = 100
-NEWS_LIST_BATCH_SIZE = 10
-USER_NEWS_TIME_OUT_IN_SECONDS = 600
+NEWS_LIMIT = parameters.NEWS_LIMIT
+NEWS_LIST_BATCH_SIZE = parameters.NEWS_LIST_BATCH_SIZE
+USER_NEWS_TIME_OUT_IN_SECONDS = parameters.USER_NEWS_TIME_OUT_IN_SECONDS
 
-LOG_CLICKS_TASK_QUEUE_URL = "amqp://cvfaicnw:el5qscg30jx-T3Zs1Hp7xFpHaqEVnnuw@clam.rmq.cloudamqp.com/cvfaicnw"
-LOG_CLICKS_TASK_QUEUE_NAME = "LOG_CLICKS_TASK_QUEUE"
 
 redis_client = redis.StrictRedis(REDIS_HOST, REDIS_PORT, db=0)
-cloudAMQP_client = CloudAMQPClient(LOG_CLICKS_TASK_QUEUE_URL, LOG_CLICKS_TASK_QUEUE_NAME)
+Log_kafka_producer = KafkaProducer(bootstrap_servers = parameters.KAFKA_SERVER)
+# cloudAMQP_client = CloudAMQPClient(LOG_CLICKS_TASK_QUEUE_URL, LOG_CLICKS_TASK_QUEUE_NAME)
 
 def getNewsSummariesForUser(user_id, page_num):
     page_num = int(page_num)
@@ -83,5 +82,5 @@ def logNewsClickForUser(user_id, news_id):
     db[CLICK_LOGS_TABLE_NAME].insert(message)
 
     # Send log task to machine learning service for prediction
-    message = {'userId': user_id, 'newsId': news_id, 'timestamp': str(datetime.utcnow())}
-    cloudAMQP_client.sendMessage(message);
+    message = {'userId': user_id, 'newsId': news_id}
+    Log_kafka_producer.send(topic = parameters.LOG_CLICKS_TASK_QUEUE, value = json.dumps(message), timestamp_ms = datetime.utcnow())
