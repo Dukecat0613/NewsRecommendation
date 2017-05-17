@@ -12,8 +12,10 @@ import json
 import time
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'common'))
 
 import parameters
+import news_api_client
 
 NEWS_SOURCES = [
     'bbc-news',
