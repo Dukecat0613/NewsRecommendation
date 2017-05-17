@@ -1,15 +1,19 @@
 # -*- coding: utf-8 -*-
 
+from kafka import KafkaProducer
+# from kafka.errors import KafkaError, KafkaTimeoutError
+
 import datetime
 import hashlib
 import os
 import redis
 import sys
+import json
+import time
 
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'common'))
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
-import news_api_client
-from cloudAMQP_client import CloudAMQPClient
+import parameters
 
 REDIS_HOST = 'localhost'
 REDIS_PORT = 6379
@@ -35,7 +39,7 @@ NEWS_SOURCES = [
 ]
 
 redis_client = redis.StrictRedis(REDIS_HOST, REDIS_PORT)
-cloudAMQP_client = CloudAMQPClient(SCRAPE_NEWS_TASK_QUEUE_URL, SCRAPE_NEWS_TASK_QUEUE_NAME)
+Monitor_kafka_producer = KafkaProducer(bootstrap_servers = parameters.KAFKA_SERVER)
 
 while True:
     news_list = news_api_client.getNewsFromSource(NEWS_SOURCES)
@@ -57,8 +61,8 @@ while True:
         redis_client.set(news_digest, news)
         redis_client.expire(news_digest, NEWS_TIME_OUT_IN_SECONDS)
 
-        cloudAMQP_client.sendMessage(news)
+        Monitor_kafka_producer.send(topic=parameters.SCRAPE_NEWS_TASK_QUEUE, value=json.dump(news), timestamp_ms=time.time())
 
     print "Fetched %d new news." % num_of_new_news
 
-    cloudAMQP_client.sleep(SLEEP_TIME_IN_SECONDS)
+    time.sleep(SLEEP_TIME_IN_SECONDS)
