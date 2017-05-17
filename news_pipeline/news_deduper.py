@@ -73,7 +73,7 @@ for msg in Deque_kafka_consumer:
     if msg is not None:
         # Parse and process the task
         try:
-            handle_message(json.loads(sg.value))
+            handle_message(json.loads(msg.value))
         except Exception as e:
             print e
             pass
