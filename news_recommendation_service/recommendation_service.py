@@ -45,6 +45,6 @@ http_server = pyjsonrpc.ThreadingHttpServer(
     RequestHandlerClass = RequestHandler
 )
 
-print "Starting HTTP server on %s:%d" % (SERVER_HOST, SERVER_PORT)
+print "Starting HTTP server on %s:%d" % ('localhost', SERVER_PORT)
 
 http_server.serve_forever()

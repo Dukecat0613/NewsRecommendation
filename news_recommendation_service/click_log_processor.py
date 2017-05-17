@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 '''
 Time decay model:
 If selected:
