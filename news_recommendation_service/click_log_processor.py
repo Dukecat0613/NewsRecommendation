@@ -14,12 +14,14 @@ would bias towards more recent results more.
 import news_classes
 import os
 import sys
+from kafka import KafkaConsumer
+import time
 
 # import common package in parent directory
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'common'))
-
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 import mongodb_client
-from cloudAMQP_client import CloudAMQPClient
+import parameters
 
 # Don't modify this value unless you know what you are doing.
 NUM_OF_CLASSES = 17
@@ -28,13 +30,10 @@ ALPHA = 0.1
 
 SLEEP_TIME_IN_SECONDS = 1
 
-LOG_CLICKS_TASK_QUEUE_URL = "amqp://cvfaicnw:el5qscg30jx-T3Zs1Hp7xFpHaqEVnnuw@clam.rmq.cloudamqp.com/cvfaicnw"
-LOG_CLICKS_TASK_QUEUE_NAME = "LOG_CLICKS_TASK_QUEUE"
+PREFERENCE_MODEL_TABLE_NAME = parameters.PREFERENCE_MODEL_TABLE_NAME
+NEWS_TABLE_NAME = parameters.NEWS_TABLE_NAME
 
-PREFERENCE_MODEL_TABLE_NAME = "user_preference_model"
-NEWS_TABLE_NAME = "newCollection"
-
-cloudAMQP_client = CloudAMQPClient(LOG_CLICKS_TASK_QUEUE_URL, LOG_CLICKS_TASK_QUEUE_NAME)
+Log_kafka_consumer = KafkaConsumer(parameters.LOG_CLICKS_TASK_QUEUE, bootstrap_servers = parameters.KAFKA_SERVER)
 
 def handle_message(msg):
     if msg is None or not isinstance(msg, dict) :
@@ -89,20 +88,14 @@ def handle_message(msg):
     db[PREFERENCE_MODEL_TABLE_NAME].replace_one({'userId': userId}, model, upsert=True)
 
 def run():
-    while True:
-        if cloudAMQP_client is not None:
-            msg = cloudAMQP_client.getMessage()
-            print "the msg is ", msg
-            if msg is not None:
-                # Parse and process the task
-                try:
-                    handle_message(msg)
-                except Exception as e:
-                    print e
-                    pass
-
-            # Remove this if this becomes a bottleneck.
-            cloudAMQP_client.sleep(SLEEP_TIME_IN_SECONDS)
+    for msg in Log_kafka_consumer:
+        if msg is not None:
+            try:
+                handle_message(msg)
+            except Exception as e:
+                print e
+                pass
+        time.sleep(3)
 
 if __name__ ==  "__main__":
     run()

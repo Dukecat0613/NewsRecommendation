@@ -5,13 +5,13 @@ import sys
 
 # import common package in parent directory
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'common'))
-
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 import mongodb_client
+import parameters
 
-PREFERENCE_MODEL_TABLE_NAME = "user_preference_model"
+PREFERENCE_MODEL_TABLE_NAME = parameters.PREFERENCE_MODEL_TABLE_NAME
 
-SERVER_HOST = 'localhost'
-SERVER_PORT = 5050
+SERVER_PORT = parameters.Recommendation_SERVER_PORT
 
 # Ref: https://www.python.org/dev/peps/pep-0485/#proposed-implementation
 # Ref: http://stackoverflow.com/questions/5595425/what-is-the-best-way-to-compare-floats-for-almost-equality-in-python
@@ -41,7 +41,7 @@ class RequestHandler(pyjsonrpc.HttpRequestHandler):
 
 # Threading HTTP Server
 http_server = pyjsonrpc.ThreadingHttpServer(
-    server_address = (SERVER_HOST, SERVER_PORT),
+    server_address = ('localhost', SERVER_PORT),
     RequestHandlerClass = RequestHandler
 )
 
