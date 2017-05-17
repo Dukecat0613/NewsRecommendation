@@ -19,8 +19,6 @@ import parameters
 
 SLEEP_TIME_IN_SECONDS = 1
 
-dedupe_news_queue_client = CloudAMQPClient(DEDUPE_NEWS_TASK_QUEUE_URL, DEDUPE_NEWS_TASK_QUEUE_NAME)
-scrape_news_queue_client = CloudAMQPClient(SCRAPE_NEWS_TASK_QUEUE_URL, SCRAPE_NEWS_TASK_QUEUE_NAME)
 Deque_kafka_producer = KafkaProducer(bootstrap_servers = parameters.KAFKA_SERVER)
 Scrape_kafka_consumer = KafkaConsumer(parameters.SCRAPE_NEWS_TASK_QUEUE, bootstrap_servers = parameters.KAFKA_SERVER)
 
