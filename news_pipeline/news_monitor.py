@@ -15,15 +15,6 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 import parameters
 
-REDIS_HOST = 'localhost'
-REDIS_PORT = 6379
-
-NEWS_TIME_OUT_IN_SECONDS = 3600 * 24
-SLEEP_TIME_IN_SECONDS = 10
-
-SCRAPE_NEWS_TASK_QUEUE_URL = "amqp://qeioajkj:qJ0JdnU8_xQ9RVePRvPu14BdwqvvyXxT@salamander.rmq.cloudamqp.com/qeioajkj"
-SCRAPE_NEWS_TASK_QUEUE_NAME = "SCRAPE_NEWS_TASK_QUEUE"
-
 NEWS_SOURCES = [
     'bbc-news',
     'bbc-sport',
@@ -38,7 +29,7 @@ NEWS_SOURCES = [
     'the-washington-post'
 ]
 
-redis_client = redis.StrictRedis(REDIS_HOST, REDIS_PORT)
+redis_client = redis.StrictRedis(parameters.redisHost, parameters.redisPort)
 Monitor_kafka_producer = KafkaProducer(bootstrap_servers = parameters.KAFKA_SERVER)
 
 while True:
@@ -59,10 +50,10 @@ while True:
             news['publishedAt'] = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
 
         redis_client.set(news_digest, news)
-        redis_client.expire(news_digest, NEWS_TIME_OUT_IN_SECONDS)
+        redis_client.expire(news_digest, parameters.NEWS_TIME_OUT_IN_SECONDS)
 
-        Monitor_kafka_producer.send(topic=parameters.SCRAPE_NEWS_TASK_QUEUE, value=json.dump(news), timestamp_ms=time.time())
+        Monitor_kafka_producer.send(topic=parameters.SCRAPE_NEWS_TASK_QUEUE, value=json.dumps(news), timestamp_ms=time.time())
 
     print "Fetched %d new news." % num_of_new_news
 
-    time.sleep(SLEEP_TIME_IN_SECONDS)
+    time.sleep(parameters.SLEEP_TIME_IN_SECONDS)
