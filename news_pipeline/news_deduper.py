@@ -1,29 +1,28 @@
 import datetime
 import os
 import sys
+import time
 
 from dateutil import parser
 from sklearn.feature_extraction.text import TfidfVectorizer
 
+from kafka import KafkaConsumer
+
 # import common package in parent directory
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'common'))
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 import mongodb_client
 import news_topic_modeling_service_client
-
-from cloudAMQP_client import CloudAMQPClient
-
-# Use your own Cloud AMQP queue
-DEDUPE_NEWS_TASK_QUEUE_URL = "amqp://fdosrchl:tyNc2JFvHCi1WS9c5ohb5eEedF9rmtIz@crocodile.rmq.cloudamqp.com/fdosrchl"
-DEDUPE_NEWS_TASK_QUEUE_NAME = "DEDUPE_NEWS_TASK_QUEUE"
+import parameters
 
 SLEEP_TIME_IN_SECONDS = 1
 
-NEWS_TABLE_NAME = "newCollection"
+NEWS_TABLE_NAME = parameters.NEWS_TABLE_NAME
 
-SAME_NEWS_SIMILARITY_THRESHOLD = 0.9
+SAME_NEWS_SIMILARITY_THRESHOLD = parameters.SAME_NEWS_SIMILARITY_THRESHOLD
 
-cloudAMQP_client = CloudAMQPClient(DEDUPE_NEWS_TASK_QUEUE_URL, DEDUPE_NEWS_TASK_QUEUE_NAME)
+Deque_kafka_consumer = KafkaConsumer(parameters.DEDUPE_NEWS_TASK_QUEUE, bootstrap_servers = parameters.KAFKA_SERVER)
 
 def handle_message(msg):
     if msg is None or not isinstance(msg, dict) :
@@ -69,15 +68,12 @@ def handle_message(msg):
 
     db[NEWS_TABLE_NAME].replace_one({'digest': task['digest']}, task, upsert=True)
 
-while True:
-    if cloudAMQP_client is not None:
-        msg = cloudAMQP_client.getMessage()
-        if msg is not None:
-            # Parse and process the task
-            try:
-                handle_message(msg)
-            except Exception as e:
-                print e
-                pass
-
-        cloudAMQP_client.sleep(SLEEP_TIME_IN_SECONDS)
+for msg in Deque_kafka_consumer:
+    if msg is not None:
+        # Parse and process the task
+        try:
+            handle_message(msg)
+        except Exception as e:
+            print e
+            pass
+    time.sleep(SLEEP_TIME_IN_SECONDS)

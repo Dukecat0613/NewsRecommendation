@@ -2,25 +2,27 @@
 
 import os
 import sys
+import json
+import time
+
+from kafka import KafkaConsumer, KafkaProducer
 
 from newspaper import Article
 
 # import common package in parent directory
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'common'))
 sys.path.append(os.path.join(os.path.dirname(__file__), 'scrapers'))
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 import cnn_news_scraper
-from cloudAMQP_client import CloudAMQPClient
-
-DEDUPE_NEWS_TASK_QUEUE_URL = "amqp://fdosrchl:tyNc2JFvHCi1WS9c5ohb5eEedF9rmtIz@crocodile.rmq.cloudamqp.com/fdosrchl"
-DEDUPE_NEWS_TASK_QUEUE_NAME = "DEDUPE_NEWS_TASK_QUEUE"
-SCRAPE_NEWS_TASK_QUEUE_URL = "amqp://qeioajkj:qJ0JdnU8_xQ9RVePRvPu14BdwqvvyXxT@salamander.rmq.cloudamqp.com/qeioajkj"
-SCRAPE_NEWS_TASK_QUEUE_NAME = "SCRAPE_NEWS_TASK_QUEUE"
+import parameters
 
 SLEEP_TIME_IN_SECONDS = 1
 
 dedupe_news_queue_client = CloudAMQPClient(DEDUPE_NEWS_TASK_QUEUE_URL, DEDUPE_NEWS_TASK_QUEUE_NAME)
 scrape_news_queue_client = CloudAMQPClient(SCRAPE_NEWS_TASK_QUEUE_URL, SCRAPE_NEWS_TASK_QUEUE_NAME)
+Deque_kafka_producer = KafkaProducer(bootstrap_servers = parameters.KAFKA_SERVER)
+Scrape_kafka_consumer = KafkaConsumer(parameters.SCRAPE_NEWS_TASK_QUEUE, bootstrap_servers = parameters.KAFKA_SERVER)
 
 def handle_message(msg):
     if msg is None or not isinstance(msg, dict):
@@ -49,17 +51,14 @@ def handle_message(msg):
 
     task['text'] = article.text
 
-    dedupe_news_queue_client.sendMessage(task)
+    Deque_kafka_producer.send(topic = parameters.DEDUPE_NEWS_TASK_QUEUE, value = json.dumps(task), timestamp_ms=time.time())
 
-while True:
-    # fetch msg from queue
-    if scrape_news_queue_client is not None:
-        msg = scrape_news_queue_client.getMessage()
-        if msg is not None:
-            # Handle message
-            try:
-                handle_message(msg)
-            except Exception as e:
-                print e
-                pass
-        scrape_news_queue_client.sleep(SLEEP_TIME_IN_SECONDS)
+for msg in Scrape_kafka_consumer:
+    if msg is not None:
+        # Handle message
+        try:
+            handle_message(msg)
+        except Exception as e:
+            print e
+            pass
+    time.sleep(SLEEP_TIME_IN_SECONDS)
