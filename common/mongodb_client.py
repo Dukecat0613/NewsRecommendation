@@ -1,12 +1,3 @@
-# @Author: Dukecat
-# @Date:   2017-05-02T23:27:09-04:00
-# @Last modified by:   Dukecat
-# @Last modified time: 2017-05-11T17:55:44-04:00
-
-
-
-
-
 from pymongo import MongoClient
 
 MONGO_DB_HOST = 'localhost'

@@ -1,12 +1,3 @@
-# @Author: Dukecat
-# @Date:   2017-05-02T23:27:09-04:00
-# @Last modified by:   Dukecat
-# @Last modified time: 2017-05-11T18:29:49-04:00
-
-
-
-
-
 import operations
 import os
 import sys

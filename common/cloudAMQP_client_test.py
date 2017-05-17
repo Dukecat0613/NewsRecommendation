@@ -1,12 +1,3 @@
-# @Author: Dukecat
-# @Date:   2017-05-02T23:27:09-04:00
-# @Last modified by:   Dukecat
-# @Last modified time: 2017-05-11T18:56:54-04:00
-
-
-
-
-
 from cloudAMQP_client import CloudAMQPClient
 
 CLOUDAMQP_URL = "amqp://gjyuvcic:mSQXnhxGAsV21bLs0-lsFSQ1Z6cSI2bC@clam.rmq.cloudamqp.com/gjyuvcic"
