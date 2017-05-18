@@ -1,6 +1,9 @@
 import pyjsonrpc
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
-URL = "http://localhost:5050/"
+import parameters
+
+URL = "http://" + parameters.SERVER_HOST + ":5050/"
 
 client = pyjsonrpc.HttpClient(url=URL)
 

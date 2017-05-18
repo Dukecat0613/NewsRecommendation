@@ -11,6 +11,7 @@ import parameters
 
 PREFERENCE_MODEL_TABLE_NAME = parameters.PREFERENCE_MODEL_TABLE_NAME
 
+SERVER_HOST = parameters.SERVER_HOST
 SERVER_PORT = parameters.Recommendation_SERVER_PORT
 
 # Ref: https://www.python.org/dev/peps/pep-0485/#proposed-implementation
@@ -41,7 +42,7 @@ class RequestHandler(pyjsonrpc.HttpRequestHandler):
 
 # Threading HTTP Server
 http_server = pyjsonrpc.ThreadingHttpServer(
-    server_address = ('localhost', SERVER_PORT),
+    server_address = (SERVER_HOST, SERVER_PORT),
     RequestHandlerClass = RequestHandler
 )
 

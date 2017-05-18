@@ -14,11 +14,14 @@ from watchdog.events import FileSystemEventHandler
 
 # import packages in trainer
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'trainer'))
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 import news_cnn_model
+
+import parameters
 
 learn = tf.contrib.learn
 
-SERVER_HOST = 'localhost'
+SERVER_HOST = parameters.SERVER_HOST
 SERVER_PORT = 6060
 
 print(os.path.join(os.path.dirname(__file__)))

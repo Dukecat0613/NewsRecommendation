@@ -1,8 +1,10 @@
 from pymongo import MongoClient
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+import parameters
 
-MONGO_DB_HOST = 'localhost'
+MONGO_DB_HOST = parameters.MONGO_DB_HOST
 MONGO_DB_PORT = '27017'
-DB_NAME = 'RecommendationNews'
+DB_NAME = parameters.DB_NAME
 
 client = MongoClient("%s:%s" % (MONGO_DB_HOST, MONGO_DB_PORT))
 

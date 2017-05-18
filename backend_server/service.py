@@ -1,7 +1,10 @@
 import operations
 import pyjsonrpc
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
-SERVER_HOST = 'localhost'
+import parameters
+
+SERVER_HOST = parameters.SERVER_HOST
 SERVER_PORT = 4040
 
 class RequestHandler(pyjsonrpc.HttpRequestHandler):
