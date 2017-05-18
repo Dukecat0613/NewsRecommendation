@@ -1,14 +1,3 @@
-/**
- * @Author: Dukecat
- * @Date:   2017-05-02T23:27:10-04:00
- * @Last modified by:   Dukecat
- * @Last modified time: 2017-05-11T21:21:15-04:00
- */
-
-
-
-
-
 var express = require('express');
 var rpc_client = require('../rpc_client/rpc_client');
 var router = express.Router();
