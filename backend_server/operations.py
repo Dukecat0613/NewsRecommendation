@@ -4,6 +4,7 @@ import pickle
 import random
 import redis
 import sys
+import time
 
 from bson.json_util import dumps
 from datetime import datetime
@@ -28,7 +29,7 @@ USER_NEWS_TIME_OUT_IN_SECONDS = parameters.USER_NEWS_TIME_OUT_IN_SECONDS
 
 redis_client = redis.StrictRedis('localhost', REDIS_PORT, db=0)
 Log_kafka_producer = KafkaProducer(bootstrap_servers = parameters.KAFKA_SERVER)
-# cloudAMQP_client = CloudAMQPClient(LOG_CLICKS_TASK_QUEUE_URL, LOG_CLICKS_TASK_QUEUE_NAME)
+
 
 def getNewsSummariesForUser(user_id, page_num):
     page_num = int(page_num)
@@ -82,4 +83,4 @@ def logNewsClickForUser(user_id, news_id):
 
     # Send log task to machine learning service for prediction
     message = {'userId': user_id, 'newsId': news_id}
-    Log_kafka_producer.send(topic = parameters.LOG_CLICKS_TASK_QUEUE, value = json.dumps(message), timestamp_ms = datetime.utcnow())
+    Log_kafka_producer.send(topic = parameters.LOG_CLICKS_TASK_QUEUE, value = json.dumps(message), timestamp_ms = time.time())

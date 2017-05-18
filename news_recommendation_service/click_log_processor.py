@@ -42,8 +42,7 @@ def handle_message(msg):
         return
 
     if ('userId' not in msg
-        or 'newsId' not in msg
-        or 'timestamp' not in msg):
+        or 'newsId' not in msg):
         return
 
     userId = msg['userId']
@@ -89,15 +88,11 @@ def handle_message(msg):
 
     db[PREFERENCE_MODEL_TABLE_NAME].replace_one({'userId': userId}, model, upsert=True)
 
-def run():
-    for msg in Log_kafka_consumer:
-        if msg is not None:
-            try:
-                handle_message(json.loads(msg.value))
-            except Exception as e:
-                print e
-                pass
-        time.sleep(3)
-
-if __name__ ==  "__main__":
-    run()
+for msg in Log_kafka_consumer:
+    if msg is not None:
+        try:
+            print json.loads(msg.value)
+            handle_message(json.loads(msg.value))
+        except Exception as e:
+            print e
+            pass
