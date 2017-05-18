@@ -1,5 +1,5 @@
-redisHost = 'localhost'
-redisPort = 6379
+redisHost = 'ec2-54-175-141-176.compute-1.amazonaws.com'
+redisPort = 6380
 NEWS_TABLE_NAME = "newCollection"
 CLICK_LOGS_TABLE_NAME = 'click_logs'
 NEWS_LIMIT = 100
@@ -15,7 +15,6 @@ LOG_CLICKS_TASK_QUEUE = 'LOG_CLICKS_TASK_QUEUE'
 
 Service_SERVER_PORT = 4040
 KAFKA_SERVER = ['ec2-54-175-141-176.compute-1.amazonaws.com:9092', 'ec2-34-207-91-169.compute-1.amazonaws.com:9092']
-MONGO_DB_PORT = '27017'
 
 PREFERENCE_MODEL_TABLE_NAME = "user_preference_model"
 Recommendation_SERVER_PORT = 5050
@@ -23,5 +22,7 @@ Recommendation_SERVER_PORT = 5050
 SAME_NEWS_SIMILARITY_THRESHOLD = 0.9
 
 SERVER_HOST = 'ec2-107-23-249-234.compute-1.amazonaws.com'
-MONGO_DB_HOST = 'localhost'
+
+MONGO_DB_HOST = 'ec2-34-207-91-169.compute-1.amazonaws.com'
+MONGO_DB_PORT = 33333
 DB_NAME = 'RecommendationNews'

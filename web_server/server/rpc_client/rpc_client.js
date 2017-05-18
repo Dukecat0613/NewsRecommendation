@@ -2,7 +2,7 @@ var jayson = require('jayson');
 
 var client = jayson.client.http({
     port: 4040,
-    hostname: 'localhost'
+    hostname: 'ec2-107-23-249-234.compute-1.amazonaws.com'
 });
 
 // Test RPC method
