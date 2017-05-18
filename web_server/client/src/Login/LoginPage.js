@@ -33,7 +33,7 @@ class LoginPage extends React.Component {
     console.log('password:', password);
 
     // Post login data
-    fetch('http://ec2-107-23-249-234.compute-1.amazonaws.com/auth/login', {
+    fetch('http://ec2-107-23-249-234.compute-1.amazonaws.com/3000/auth/login', {
       method: 'POST',
       cache: false,
       headers: {
