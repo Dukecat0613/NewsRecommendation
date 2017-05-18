@@ -1,4 +1,5 @@
 from pymongo import MongoClient
+import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 import parameters
 
