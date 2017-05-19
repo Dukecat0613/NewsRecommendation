@@ -38,7 +38,7 @@ class SignUpPage extends React.Component {
     }
 
     // Post registeration data
-    fetch('http://ec2-54-175-248-107.compute-1.amazonaws.com/3000/auth/signup', {
+    fetch('http://ec2-54-175-248-107.compute-1.amazonaws.com:3000/auth/signup', {
       method: 'POST',
       cache: false,
       headers: {

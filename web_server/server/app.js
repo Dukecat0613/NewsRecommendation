@@ -1,14 +1,3 @@
-/**
- * @Author: Dukecat
- * @Date:   2017-05-02T23:27:10-04:00
- * @Last modified by:   Dukecat
- * @Last modified time: 2017-05-11T02:31:01-04:00
- */
-
-
-
-
-
 var bodyParser = require('body-parser');
 var cors = require('cors');
 var express = require('express');

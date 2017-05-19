@@ -32,7 +32,7 @@ class NewsPanel extends React.Component{
       return;
     }
 
-    let url = 'http://ec2-54-175-248-107.compute-1.amazonaws.com/3000/news/userId/' + Auth.getEmail()
+    let url = 'http://ec2-54-175-248-107.compute-1.amazonaws.com:3000/news/userId/' + Auth.getEmail()
               + '/pageNum/' + this.state.pageNum;
 
     let request = new Request(encodeURI(url), {
