@@ -10,7 +10,7 @@ class NewsCard extends React.Component{
   }
 
   sendClickLog() {
-    let url = 'http://ec2-107-23-249-234.compute-1.amazonaws.com/3000/news/userId/' + Auth.getEmail()
+    let url = 'http://ec2-54-175-248-107.compute-1.amazonaws.com/3000/news/userId/' + Auth.getEmail()
               + '/newsId/' + this.props.news.digest;
     console.log(this.props.news.digest)
     let request = new Request(encodeURI(url), {
