@@ -21,7 +21,7 @@ Recommendation_SERVER_PORT = 5050
 
 SAME_NEWS_SIMILARITY_THRESHOLD = 0.9
 
-SERVER_HOST = 'ec2-107-23-249-234.compute-1.amazonaws.com'
+SERVER_HOST = 'ec2-54-175-248-107.compute-1.amazonaws.com'
 
 MONGO_DB_HOST = 'ec2-52-205-251-116.compute-1.amazonaws.com'
 MONGO_DB_PORT = 33333
