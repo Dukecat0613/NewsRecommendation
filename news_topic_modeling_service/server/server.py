@@ -56,7 +56,7 @@ def loadModel():
         model_fn=news_cnn_model.generate_cnn_model(N_CLASSES, n_words),
         model_dir=MODEL_DIR)
     # Prepare training and testing
-    df = pd.read_csv(os.path.join(os.path.dirname(__file__)) + '/../labeled_news.csv', header=None)
+    df = pd.read_csv(os.path.join(os.path.dirname(__file__)) + '../labeled_news.csv', header=None)
 
     train_df = df[0:1]
     x_train = train_df[1]
