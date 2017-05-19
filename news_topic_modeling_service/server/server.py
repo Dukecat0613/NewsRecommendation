@@ -14,7 +14,7 @@ from watchdog.events import FileSystemEventHandler
 
 # import packages in trainer
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'trainer'))
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
 import news_cnn_model
 
 import parameters
