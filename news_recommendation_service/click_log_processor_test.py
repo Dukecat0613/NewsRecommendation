@@ -1,12 +1,3 @@
-# @Author: Dukecat
-# @Date:   2017-05-02T23:27:09-04:00
-# @Last modified by:   Dukecat
-# @Last modified time: 2017-05-11T19:46:28-04:00
-
-
-
-
-
 import click_log_processor
 import os
 import sys
