@@ -27,7 +27,7 @@ NEWS_LIST_BATCH_SIZE = parameters.NEWS_LIST_BATCH_SIZE
 USER_NEWS_TIME_OUT_IN_SECONDS = parameters.USER_NEWS_TIME_OUT_IN_SECONDS
 
 
-redis_client = redis.StrictRedis(parameters.REDIS_HOST, REDIS_PORT, db=0)
+redis_client = redis.StrictRedis(parameters.redisHost, REDIS_PORT, db=0)
 Log_kafka_producer = KafkaProducer(bootstrap_servers = parameters.KAFKA_SERVER)
 
 
