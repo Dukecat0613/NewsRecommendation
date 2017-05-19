@@ -26,13 +26,13 @@ SERVER_PORT = 6060
 
 print(os.path.join(os.path.dirname(__file__)))
 
-MODEL_DIR = os.path.join(os.path.dirname(__file__)) + '/../model'
+MODEL_DIR = os.path.join(os.path.dirname(__file__)) + '../model'
 MODEL_UPDATE_LAG_IN_SECONDS = 10
 
 N_CLASSES = 17;
 
-VARS_FILE = os.path.join(os.path.dirname(__file__)) + '/../model/vars'
-VOCAB_PROCESSOR_SAVE_FILE = os.path.join(os.path.dirname(__file__)) + '/../model/vocab_procesor_save_file'
+VARS_FILE = os.path.join(os.path.dirname(__file__)) + '../model/vars'
+VOCAB_PROCESSOR_SAVE_FILE = os.path.join(os.path.dirname(__file__)) + '../model/vocab_procesor_save_file'
 
 n_words = 0
 
