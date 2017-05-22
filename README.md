@@ -79,21 +79,21 @@ React as Front-End framework
 
 We deployed our Web App on AWS EC2 instances.
 
-## <a name="database"></a>1. Database
+## <a name="database"></a>Database
 
-    1.1 MongoDB
+    * MongoDB
 
-    1.2 Redis
+    * Redis
 
-## <a name="kafka-cluster"></a>2. Kafka Cluster
+## <a name="kafka-cluster"></a>Kafka Cluster
 
-    2.1 
+    *
 
-    2.2
+    *
 
-## <a name="web-server"></a>3. Web Server
+## <a name="web-server"></a>Web Server
 	
-    3.1 Server
+    * Server
 
-    3.2 Client
+    * Client
 
