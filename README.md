@@ -1,7 +1,25 @@
-# NewsRecommendation
-The project is to build a recommendation system based on user behaviors. We used Kafka as message queue, Pyjsonrpc as RPC(Remote Procedure Call), mongodb as NoSQL database, tensorflow as machine learning framework, React as frontend framework and node.js as backend server to achieve the recommendation system.
+<img src="logo pic link">
 
-## How to run?
+# ProtoNews
+
+### Introduction
+
+ProtoNews is a news recommendation application. Its primitive idea is to deliver top line news faster yet simpler. It runs machine learning modeling to perform intelligent news recommendations based on users' taps. ProtoNews makes reading news much easier and frees us from the pain of picking up a news article in a way that it just like already knows what we are expecting.  
+
+[![Build Status]()]()
+[![coverage-0%]()]()
+
+<img src="a screenshot of website">
+
+### Features
+
+- F1
+- F2
+- F3
+- F4
+
+### Get Started
+
 1. Run your mongodb server locally(download mongodb).
 ```sh
 ./mongod
@@ -20,3 +38,10 @@ to start server
 5. Go to webserver/client 
  `npm run build` to create build folder 
 then `npm start`. Later, it will jump to the login page, sign up first and log in. As so far, we are done!
+
+### Architecture
+
+- [Datapipe](#)
+- [Backend](#)
+- [Frontend](#)
+- [Cloud-AWS](#)
