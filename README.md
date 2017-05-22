@@ -1,24 +1,21 @@
-<img src="logo pic link">
+(logo pic link)
 
-# ProtoNews
+(Name Logo -- ProtoNews)
 
-### Introduction
+## Introduction
 
 ProtoNews is a news recommendation application. Its primitive idea is to deliver top line news faster yet simpler. It runs machine learning modeling to perform intelligent news recommendations based on users' taps. ProtoNews makes reading news much easier and frees us from the pain of picking up a news article in a way that it just like already knows what we are expecting.  
 
-[![Build Status]()]()
-[![coverage-0%]()]()
+(a screenshot of website)
 
-<img src="a screenshot of website">
-
-### Features
+## Features
 
 - F1
 - F2
 - F3
 - F4
 
-### Get Started
+## Get Started
 
 1. Run your mongodb server locally(download mongodb).
 ```sh
@@ -39,9 +36,61 @@ to start server
  `npm run build` to create build folder 
 then `npm start`. Later, it will jump to the login page, sign up first and log in. As so far, we are done!
 
-### Architecture
+## Architecture
 
-- [Datapipe](#)
-- [Backend](#)
-- [Frontend](#)
-- [Cloud-AWS](#)
+- [Data Pipeline](#data-pipeline)
+  - [Kafka](#kafka)
+  - [MongoDB](#mongodb)
+  - [Redis](#redis)
+- [Back-End](#back-end)
+  - [Express](#express)
+  - [Node.js](#nodejs)
+- [Front-End](#front-end)
+- [Cloud-AWS](#cloud-aws)
+  - [Database](#database)
+  - [Kafka Cluster](#kafka-cluster)
+  - [Web Server](#web-server)
+
+---------
+
+# <a name="data-pipeline"></a>Data Pipeline
+
+Kafka - Data Transportation
+
+News API injests news data into Kafka cluster.
+...
+
+# <a name="back-end"></a>Back-End
+
+Node.js + Express as Back-End framework.
+
+- ## <a name="express"></a>Express
+
+- ## <a name="nodejs"></a>Node.js
+
+# <a name="front-end"></a>Front-End
+
+React as Front-End framework
+
+# <a name="cloud-aws"></a>Cloud-AWS
+
+We deployed our Web App on AWS EC2 instances.
+
+## <a name="database"></a>1. Database
+
+###	1.1 MongoDB
+
+###	1.2 Redis
+
+## <a name="kafka-cluster"></a>2. Kafka Cluster
+
+### 2.1
+
+### 2.2
+
+## <a name="web-server"></a>3. Web Server
+	
+###	4.1 Server
+
+###	4.2 Client
+
