@@ -67,9 +67,9 @@ then `npm start`. Later, it will jump to the login page, sign up first and log i
 
 Node.js + Express as Back-End framework.
 
-  - ## <a name="express"></a>Express
+  - <a name="express"></a>Express
 
-  - ## <a name="nodejs"></a>Node.js
+  - <a name="nodejs"></a>Node.js
 
 # <a name="front-end"></a>Front-End
 
@@ -81,19 +81,19 @@ We deployed our Web App on AWS EC2 instances.
 
 ## <a name="database"></a>1. Database
 
-  ### 1.1 MongoDB
+    1.1 MongoDB
 
-  ### 1.2 Redis
+    1.2 Redis
 
 ## <a name="kafka-cluster"></a>2. Kafka Cluster
 
-  ### 2.1 
+    2.1 
 
-  ### 2.2
+    2.2
 
 ## <a name="web-server"></a>3. Web Server
 	
-  ### 3.1 Server
+    3.1 Server
 
-  ### 3.2 Client
+    3.2 Client
 
