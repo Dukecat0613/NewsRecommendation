@@ -53,7 +53,7 @@ then `npm start`. Later, it will jump to the login page, sign up first and log i
 
 ---------
 
-# <a name="data-pipeline"></a>Data Pipeline
+**<a name="data-pipeline"></a>Data Pipeline**
 
 (A pic for our data pipeline)
 
@@ -63,7 +63,7 @@ then `npm start`. Later, it will jump to the login page, sign up first and log i
 
   - <a name="redis"></a>Redis
 
-# <a name="back-end"></a>Back-End
+**<a name="back-end"></a>Back-End**
 
 Node.js + Express as Back-End framework.
 
@@ -71,29 +71,36 @@ Node.js + Express as Back-End framework.
 
   - <a name="nodejs"></a>Node.js
 
-# <a name="front-end"></a>Front-End
+**<a name="front-end"></a>Front-End**
 
 React as Front-End framework
 
-# <a name="cloud-aws"></a>Cloud-AWS
+**<a name="cloud-aws"></a>Cloud-AWS**
 
 We deployed our Web App on AWS EC2 instances.
 
-## <a name="database"></a>Database
+ <a name="database"></a>Database
 
   * MongoDB
 
   * Redis
 
-## <a name="kafka-cluster"></a>Kafka Cluster
+ <a name="kafka-cluster"></a>Kafka Cluster
 
   *
 
   *
 
-## <a name="web-server"></a>Web Server
+ <a name="web-server"></a>Web Server
 	
   * Server
 
   * Client
 
+## Team
+
+[![Hang Wu](https://avatars2.githubusercontent.com/u/23732977?v=3&s=400)](https://github.com/Dukecat0613)  | [![Yuxiang Wang](https://avatars3.githubusercontent.com/u/18521999?v=3&u=efb9e4252e5dd007610874e1e67a4026efbd9644&s=400)](https://github.com/kuroega)
+---|---
+[Hang Wu](https://github.com/Dukecat0613) |[Yuxiang Wang](https://github.com/kuroega)
+
+## License
