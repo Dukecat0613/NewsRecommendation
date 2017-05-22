@@ -99,7 +99,7 @@ We deployed our Web App on AWS EC2 instances.
 
 ## Team
 
-[![Hang Wu](https://avatars2.githubusercontent.com/u/23732977?v=3&s=400)](https://github.com/Dukecat0613)  | [![Yuxiang Wang](https://avatars3.githubusercontent.com/u/18521999?v=3&u=efb9e4252e5dd007610874e1e67a4026efbd9644&s=400)](https://github.com/kuroega)
+[![Hang Wu](https://avatars2.githubusercontent.com/u/23732977?v=3&s=400 = 200x200)](https://github.com/Dukecat0613) | [![Yuxiang Wang](https://avatars3.githubusercontent.com/u/18521999?v=3&u=efb9e4252e5dd007610874e1e67a4026efbd9644&s=400 = 200x200)](https://github.com/kuroega)
 ---|---
 [Hang Wu](https://github.com/Dukecat0613) |[Yuxiang Wang](https://github.com/kuroega)
 
