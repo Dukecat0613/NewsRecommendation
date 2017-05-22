@@ -81,19 +81,19 @@ We deployed our Web App on AWS EC2 instances.
 
 ## <a name="database"></a>Database
 
-    * MongoDB
+  * MongoDB
 
-    * Redis
+  * Redis
 
 ## <a name="kafka-cluster"></a>Kafka Cluster
 
-    *
+  *
 
-    *
+  *
 
 ## <a name="web-server"></a>Web Server
 	
-    * Server
+  * Server
 
-    * Client
+  * Client
 
