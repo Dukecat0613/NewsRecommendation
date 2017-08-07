@@ -1,7 +1,12 @@
-(logo pic link)
-
-(Name Logo -- ProtoNews)
-
+```
+    ____             __        _   __                 
+   / __ \_________  / /_____  / | / /__ _      _______
+  / /_/ / ___/ __ \/ __/ __ \/  |/ / _ \ | /| / / ___/
+ / ____/ /  / /_/ / /_/ /_/ / /|  /  __/ |/ |/ (__  ) 
+/_/   /_/   \____/\__/\____/_/ |_/\___/|__/|__/____/  
+                                                      
+                                                                    v-0.0.1
+```
 ## Introduction
 
 ProtoNews is a news recommendation application. Its primitive idea is to deliver top line news faster yet simpler. It runs machine learning modeling to perform intelligent news recommendations based on users' taps. ProtoNews makes reading news much easier and frees us from the pain of picking up a news article in a way that it just like already knows what we are expecting.  
@@ -104,3 +109,6 @@ We deployed our Web App on AWS EC2 instances.
 [Hang Wu](https://github.com/Dukecat0613) |[Yuxiang Wang](https://github.com/kuroega)
 
 ## License
+
+
+
