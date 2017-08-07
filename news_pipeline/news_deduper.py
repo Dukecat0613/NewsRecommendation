@@ -46,12 +46,12 @@ def handle_message(msg):
         documents.insert(0, text)
 
         # Calculate similarity matrix
-        tfidf = TfidfVectorizer().fit_transform(documents)
+        tfidf = TfidfVectorizer().fit_transform(documents) # Learn vocabulary in document and return the term-document matrix
         pairwise_sim = tfidf * tfidf.T
 
-        print pairwise_sim.A
+        print pairwise_sim.A # Display the result in type Array
 
-        rows, _ = pairwise_sim.shape
+        rows, _ = pairwise_sim.shape # return # samples and features
 
         for row in range(1, rows):
             if pairwise_sim[row, 0] > SAME_NEWS_SIMILARITY_THRESHOLD:

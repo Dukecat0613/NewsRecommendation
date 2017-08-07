@@ -39,7 +39,6 @@ class RequestHandler(pyjsonrpc.HttpRequestHandler):
 
         return sorted_list
 
-
 # Threading HTTP Server
 http_server = pyjsonrpc.ThreadingHttpServer(
     server_address = (SERVER_HOST, SERVER_PORT),

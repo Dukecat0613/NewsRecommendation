@@ -9,7 +9,7 @@ import tensorflow as tf
 import time
 
 from tensorflow.contrib.learn.python.learn.estimators import model_fn
-from watchdog.observers import Observer
+from watchdog.observers import Observer # watchdog is a python API and shell utilities to monitor file system events
 from watchdog.events import FileSystemEventHandler
 
 # import packages in trainer
@@ -46,7 +46,7 @@ def restoreVars():
         global n_words
         n_words = pickle.load(f)
     global vocab_processor
-    vocab_processor = learn.preprocessing.VocabularyProcessor.restore(VOCAB_PROCESSOR_SAVE_FILE)
+    vocab_processor = learn.preprocessing.VocabularyProcessor.restore(VOCAB_PROCESSOR_SAVE_FILE) # restore vocabulary from given file
     print vocab_processor
     print 'Vars updated.'
 
@@ -60,9 +60,9 @@ def loadModel():
 
     train_df = df[0:1]
     x_train = train_df[1]
-    x_train = np.array(list(vocab_processor.transform(x_train)))
+    x_train = np.array(list(vocab_processor.transform(x_train))) # transform document to word-id matrix
     y_train = train_df[0]
-    classifier.evaluate(x_train, y_train)
+    classifier.evaluate(x_train, y_train) # evaluate the Tensorflow model 
 
     print "Model updated."
 
@@ -95,7 +95,7 @@ class RequestHandler(pyjsonrpc.HttpRequestHandler):
         topic = news_classes.class_map[str(y_predicted[0])]
         return topic
 
-# Setup watchdog
+# Set up watchdog
 observer = Observer()
 observer.schedule(ReloadModelHandler(), path=MODEL_DIR, recursive=False)
 observer.start()

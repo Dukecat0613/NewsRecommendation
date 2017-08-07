@@ -58,7 +58,7 @@ def handle_message(msg):
         new_model = {'userId' : userId}
         preference = {}
         for i in news_classes.classes:
-            preference[i] = float(INITIAL_P)
+            preference[i] = float(INITIAL_P) # set the value of the news class in dict 'preference' all to 0.17(INITIAL_P)
         new_model['preference'] = preference
         model = new_model
 
@@ -75,7 +75,7 @@ def handle_message(msg):
         print 'Skipping processing...'
         return
 
-    click_class = news['class']
+    click_class = news['class'] # get the class of clicked news 
 
     # Update the clicked one.
     old_p = model['preference'][click_class]
