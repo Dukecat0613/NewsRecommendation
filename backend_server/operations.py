@@ -13,7 +13,7 @@ from kafka import KafkaProducer
 # import common package in parent directory
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'common'))
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-import mongodb_client # defined get_db() that return the db from a certatin host:port
+import mongodb_client # defined get_db() that return the db from a certain host:port
 import news_recommendation_service_client
 import parameters
 
